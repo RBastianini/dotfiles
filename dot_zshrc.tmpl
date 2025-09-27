@@ -1,0 +1,69 @@
+# enable color support of ls and also add handy aliases 
+if [ -x /usr/bin/dircolors ]; then 
+ test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+ alias ls='ls --color=auto' 
+ alias dir='dir --color=auto' 
+ alias vdir='vdir --color=auto' 
+ alias grep='grep --color=auto' 
+ alias fgrep='fgrep --color=auto' 
+ alias egrep='egrep --color=auto' 
+fi 
+alias ll='ls -alF' 
+alias la='ls -A' 
+alias l='ls -CF'
+alias ..='cd ..'
+PATH=~/.bin:~/.scripts:~/:~/.local/bin:~/.local/script:$PATH
+# Tilix Ubuntu VTE Fix
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+    source /etc/profile.d/vte.sh
+fi
+
+#icons-in-terminal
+source ~/.local/share/icons-in-terminal/icons_bash.sh
+# icons-in-terminal ent
+
+# OH MY ZH
+source ~/.oh-my-zshrc
+# END OH MY ZSH
+
+# Powerline9k
+export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir dir_status)
+export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time vcs)
+export POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=5
+export POWERLEVEL9K_EXECUTION_TIME_ICON="$fa_hourglass_3 "
+export POWERLEVEL9K_VCS_BRANCH_ICON="$dev_git_branch "
+export POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND='006'
+export POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND='027'
+export POWERLEVEL9K_DIR_HOME_FOREGROUND='021'
+export POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='021'
+export POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='021'
+export POWERLEVEL9K_OK_ICON="$fa_check"
+export POWERLEVEL9K_FAIL_ICON="$fa_close"
+export POWERLEVEL9K_LOCK_ICON="$fa_lock"
+export POWERLEVEL9K_VCS_COMMIT_ICON="$oct_git_commit "
+export POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON="$oct_cloud_download "
+export POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON="$oct_cloud_upload "
+export POWERLEVEL9K_VCS_STAGED_ICON="$oct_diff_added "
+export POWERLEVEL9K_VCS_UNSTAGED_ICON="$oct_diff_modified "
+export POWERLEVEL9K_VCS_UNTRACKED_ICON="$oct_diff_ignored "
+export POWERLEVEL9K_VCS_STASH_ICON="$oct_package "
+export POWERLEVEL9K_VCS_TAG_ICON="$oct_tag "
+export POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR="$powerline_extra_pixelated_squares_big"
+export POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR="$powerline_extra_pixelated_squares_big_mirrored"
+# End Powerline9k
+
+# broot "br" function
+source ~/.scripts/br
+
+# Gnome keyring ssh auth socket
+export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+
+export EDITOR=vim
+export PAGER=bat
+export MANPAGER="sh -c 'col -bx | bat -l man -p'";
+
+eval "$(zoxide init zsh)"
+
+if [ -x ~/.scripts/.local_zshrc ]; then
+    source ~/.local/zshrc
+fi

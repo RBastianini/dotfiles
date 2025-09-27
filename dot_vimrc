@@ -1,0 +1,7 @@
+call plug#begin()
+Plug 'tpope/vim-sensible'
+Plug 'crusoexia/vim-monokai'
+call plug#end()
+silent! colorscheme monokai # set color scheme, but ignore if not present (useful on first run)
+set number " show line numbers in vim
+set relativenumber " show relative line numbers

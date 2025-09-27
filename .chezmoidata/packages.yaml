@@ -1,0 +1,11 @@
+packages:
+  linux:
+    apt:
+      - git
+      - make
+      - silversearcher-ag
+      - vim
+      - zsh
+      # These dependencies are usually installed with ubuntu, so they are not really needed
+      # - xz-utils
+      # - fontconfig

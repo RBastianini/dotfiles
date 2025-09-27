@@ -1,0 +1,130 @@
+[".oh-my-zsh"]
+    type = "archive"
+    url = "https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "168h"
+
+[".oh-my-zsh/custom/themes/powerlevel10k"]
+    type = "archive"
+    url = "https://github.com/romkatv/powerlevel10k/archive/v1.20.0.tar.gz"
+    exact = true
+    stripComponents = 1
+
+[".oh-my-zsh/custom/plugins/zsh-autosuggestions"]
+    type = "archive"
+    url = "https://github.com/zsh-users/zsh-autosuggestions/archive/master.tar.gz"
+    exact = true
+    stripComponents = 1
+
+[".oh-my-zsh/custom/plugins/zsh-syntax-highlighting"]
+    type = "archive"
+    url = "https://github.com/zsh-users/zsh-syntax-highlighting/archive/master.tar.gz"
+    exact = true
+    stripComponents = 1
+
+[".icons-in-terminal"]
+    type = "git-repo"
+    url = "https://github.com/sebastiencs/icons-in-terminal.git"
+    refreshPeriod = "168h"
+
+[".bin/gh"]
+    {{ $gh_version := (gitHubLatestRelease "cli/cli").TagName }}
+    type = "archive-file"
+    path = "gh_{{ $gh_version | trimPrefix "v"}}_linux_amd64/bin/gh"
+    executable = true
+    url = "https://github.com/cli/cli/releases/download/{{ $gh_version }}/gh_{{ $gh_version | trimPrefix "v"}}_linux_amd64.tar.gz"
+
+[".bin/delta"]
+    {{ $delta_version := (gitHubLatestRelease "dandavison/delta").TagName }}
+    type = "archive-file"
+    path = "delta-{{ $delta_version }}-x86_64-unknown-linux-gnu/delta"
+    executable = true
+    url = "https://github.com/dandavison/delta/releases/download/{{ $delta_version }}/delta-{{ $delta_version }}-x86_64-unknown-linux-gnu.tar.gz"
+
+[".bin/bat"]
+    {{ $bat_version := (gitHubLatestRelease "sharkdp/bat").TagName }}
+    type = "archive-file"
+    path = "bat-{{ $bat_version }}-x86_64-unknown-linux-gnu/bat"
+    executable = true
+    url = "https://github.com/sharkdp/bat/releases/download/{{ $bat_version }}/bat-{{ $bat_version }}-x86_64-unknown-linux-gnu.tar.gz"
+
+[".bin/zoxide"]
+    {{ $zoxide_version := (gitHubLatestRelease "ajeetdsouza/zoxide").TagName }}
+    type = "archive-file"
+    path = "zoxide"
+    executable = true
+    url = "https://github.com/ajeetdsouza/zoxide/releases/download/{{ $zoxide_version }}/zoxide-{{ $zoxide_version | trimPrefix "v" }}-x86_64-unknown-linux-musl.tar.gz"
+
+[".vim/autoload/plug.vim"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+
+[".bin/fd"]
+    {{ $fd_version := (gitHubLatestRelease "sharkdp/fd").TagName }}
+    type = "file"
+    executable = true
+    url = "https://github.com/sharkdp/fd/releases/download/{{ $fd_version }}/fd-{{ $fd_version }}-x86_64-unknown-linux-gnu.tar.gz"
+
+[".bin/broot"]
+    {{ $broot_version := (gitHubLatestRelease "Canop/broot").TagName }}
+    type = "archive-file"
+    path = "x86_64-unknown-linux-gnu/broot"
+    executable = true
+    url = "https://github.com/Canop/broot/releases/download/{{ $broot_version }}/broot_{{ $broot_version | trimPrefix "v" }}.zip"
+
+[".bin/uni"]
+    {{ $uni_version := (gitHubLatestRelease "arp242/uni").TagName }}
+    type = "file"
+    decompress = "gzip"
+    executable = true
+    url = "https://github.com/arp242/uni/releases/download/{{ $uni_version }}/uni-{{ $uni_version }}-linux-amd64.gz"
+
+[".bin/yq"]
+    {{ $yq_version := (gitHubLatestRelease "mikefarah/yq").TagName }}
+    type = "file"
+    executable = true
+    url = "https://github.com/mikefarah/yq/releases/download/{{ $yq_version }}/yq_linux_amd64"
+
+[".bin/jnv"]
+    {{ $jnv_version := (gitHubLatestRelease "ynqa/jnv").TagName }}
+    # For some reason archive-file does not like tar.xz files and even using decompress=xz doesnt seem to work
+    type = "file"
+    filter.command = "tar"
+    filter.args = ["-J", "--get", "--strip-components", "1","jnv-x86_64-unknown-linux-gnu/jnv" ]
+    executable = true
+    url = "https://github.com/ynqa/jnv/releases/download/{{ $jnv_version }}/jnv-x86_64-unknown-linux-gnu.tar.xz"
+
+# Monospaced fonts
+[".fonts/hack"]
+    {{ $hack_version := (gitHubLatestRelease "source-foundry/Hack").TagName }}
+    type = "archive"
+    url = "https://github.com/source-foundry/Hack/releases/download/{{ $hack_version }}/Hack-{{ $hack_version }}-ttf.zip"
+    include = ["ttf/*"]
+    stripcomponents = 1
+
+[".fonts/firacode"]
+    {{ $firacode_version := (gitHubLatestRelease "tonsky/FiraCode").TagName }}
+    type = "archive"
+    url = "https://github.com/tonsky/FiraCode/releases/download/{{ $firacode_version }}/Fira_Code_v{{ $firacode_version }}.zip"
+    include = ["ttf/*"]
+    stripComponents = 1
+
+[".fonts/departuremono"]
+    {{ $departuremono_version := (gitHubLatestRelease "rektdeckard/departure-mono").TagName }}
+    type = "archive-file"
+    url = "https://github.com/rektdeckard/departure-mono/releases/download/{{ $departuremono_version }}/DepartureMono-{{ $departuremono_version | trimPrefix "v"}}.zip"
+    path = "DepartureMono-{{ $departuremono_version | trimPrefix "v"}}/DepartureMono-Regular.otf"
+
+{{ $iosevka_version := (gitHubLatestRelease "be5invis/Iosevka").TagName }}
+[".fonts/iosevka"]
+    type = "archive"
+    url = "https://github.com/be5invis/Iosevka/releases/download/{{ $iosevka_version }}/PkgTTF-Iosevka-{{ $iosevka_version | trimPrefix "v" }}.zip"
+
+[".fonts/iosevka-term"]
+    type = "archive"
+    url = "https://github.com/be5invis/Iosevka/releases/download/{{ $iosevka_version }}/PkgTTF-IosevkaTerm-{{ $iosevka_version | trimPrefix "v" }}.zip"
+
+[".fonts/iosevka-fixed-slab"]
+    type = "archive"
+    url = "https://github.com/be5invis/Iosevka/releases/download/{{ $iosevka_version }}/PkgTTF-IosevkaFixedSlab-{{ $iosevka_version | trimPrefix "v" }}.zip"

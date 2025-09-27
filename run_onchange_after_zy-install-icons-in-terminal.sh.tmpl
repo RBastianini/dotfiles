@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -eo pipefail
+# Move to icons-in-terminal directory
+pushd {{ .chezmoi.destDir }}/.icons-in-terminal > /dev/null
+# Add trap (on EXIT signal) to restore working directory
+trap "popd > /dev/null" EXIT
+./install.sh

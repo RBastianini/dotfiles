@@ -1,0 +1,46 @@
+[user]
+	email = RBastianini@users.noreply.github.com
+	name = Riccardo Bastianini
+[core]
+	editor = vim
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only --features=interactive
+[delta]
+	navigate = true
+	features = decorations
+
+[merge]
+	conflictsyle = diff3
+[diff]
+	colorMoved = default
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[advice]
+	statusHints = false
+[alias]
+	stash-all = stash save --include-untracked
+	please = push --force-with-lease
+	also-commit = commit --amend --no-edit
+	reword = commit --amend -e
+[diff]
+	mnemonicprefix = true
+[pull]
+	rebase = false
+[cola]
+	spellcheck = false
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[push]
+	autoSetupRemote = true
+[commit]
+	sort = -committerdate
+[help]
+	autocorrect = prompt
