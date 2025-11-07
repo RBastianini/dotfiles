@@ -64,6 +64,21 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'";
 
 eval "$(zoxide init zsh)"
 
-if [ -x ~/.scripts/.local_zshrc ]; then
+mkcd () {
+  \mkdir -p "$1"
+  cd "$1"
+}
+
+tempdir () {
+  cd "$(mktemp -d)"
+  chmod -R 0700 .
+  if [[ $# -eq 1 ]]; then
+    \mkdir -p "$1"
+    cd "$1"
+    chmod -R 0700 .
+  fi
+}
+
+if [ -x ~/.local/zshrc ]; then
     source ~/.local/zshrc
 fi

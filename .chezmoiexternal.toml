@@ -62,7 +62,8 @@
 
 [".bin/fd"]
     {{ $fd_version := (gitHubLatestRelease "sharkdp/fd").TagName }}
-    type = "file"
+    type = "archive-file"
+    path = "fd-v10.3.0-x86_64-unknown-linux-gnu/fd"
     executable = true
     url = "https://github.com/sharkdp/fd/releases/download/{{ $fd_version }}/fd-{{ $fd_version }}-x86_64-unknown-linux-gnu.tar.gz"
 
