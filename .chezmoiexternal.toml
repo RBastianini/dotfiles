@@ -63,14 +63,14 @@
 [".bin/fd"]
     {{ $fd_version := (gitHubLatestRelease "sharkdp/fd").TagName }}
     type = "archive-file"
-    path = "fd-v10.3.0-x86_64-unknown-linux-gnu/fd"
+    path = "fd-{{ $fd_version }}-x86_64-unknown-linux-gnu/fd"
     executable = true
     url = "https://github.com/sharkdp/fd/releases/download/{{ $fd_version }}/fd-{{ $fd_version }}-x86_64-unknown-linux-gnu.tar.gz"
 
 [".bin/broot"]
     {{ $broot_version := (gitHubLatestRelease "Canop/broot").TagName }}
     type = "archive-file"
-    path = "x86_64-unknown-linux-gnu/broot"
+    path = "x86_64-unknown-linux-gnu-glibc2.28/broot"
     executable = true
     url = "https://github.com/Canop/broot/releases/download/{{ $broot_version }}/broot_{{ $broot_version | trimPrefix "v" }}.zip"
 
@@ -87,14 +87,15 @@
     executable = true
     url = "https://github.com/mikefarah/yq/releases/download/{{ $yq_version }}/yq_linux_amd64"
 
-[".bin/jnv"]
-    {{ $jnv_version := (gitHubLatestRelease "ynqa/jnv").TagName }}
-    # For some reason archive-file does not like tar.xz files and even using decompress=xz doesnt seem to work
-    type = "file"
-    filter.command = "tar"
-    filter.args = ["-J", "--get", "--strip-components", "1","jnv-x86_64-unknown-linux-gnu/jnv" ]
-    executable = true
-    url = "https://github.com/ynqa/jnv/releases/download/{{ $jnv_version }}/jnv-x86_64-unknown-linux-gnu.tar.xz"
+# TODO: this ends up putting the file in the directory where chezmoi is launched from instead than in .bin.
+#[".bin/jnv"]
+#    {{ $jnv_version := (gitHubLatestRelease "ynqa/jnv").TagName }}
+#    # For some reason archive-file does not like tar.xz files and even using decompress=xz doesnt seem to work
+#    type = "file"
+#    filter.command = "tar"
+#    filter.args = ["-J", "--get", "--strip-components", "1","jnv-x86_64-unknown-linux-gnu/jnv" ]
+#    executable = true
+#    url = "https://github.com/ynqa/jnv/releases/download/{{ $jnv_version }}/jnv-x86_64-unknown-linux-gnu.tar.xz"
 
 # Monospaced fonts
 [".fonts/hack"]
@@ -129,3 +130,9 @@
 [".fonts/iosevka-fixed-slab"]
     type = "archive"
     url = "https://github.com/be5invis/Iosevka/releases/download/{{ $iosevka_version }}/PkgTTF-IosevkaFixedSlab-{{ $iosevka_version | trimPrefix "v" }}.zip"
+
+{{ $pixelcode_version := (gitHubLatestRelease "qwerasd205/PixelCode").TagName }}
+[".fonts/pixelcode"]
+    type = "archive"
+    url = "https://github.com/qwerasd205/PixelCode/releases/download/{{ $pixelcode_version }}/ttf.zip"
+    stripComponents = 1
