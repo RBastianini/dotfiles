@@ -12,6 +12,7 @@ alias ll='ls -alF'
 alias la='ls -A' 
 alias l='ls -CF'
 alias ..='cd ..'
+alias csview=ov -H1 -C -d',' -c --column-rainbow --align
 PATH=~/.bin:~/.scripts:~/:~/.local/bin:~/.local/script:$PATH
 # Tilix Ubuntu VTE Fix
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
@@ -60,7 +61,8 @@ export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
 
 export EDITOR=vim
 export PAGER=bat
-export MANPAGER="sh -c 'col -bx | bat -l man -p'";
+export MANPAGER="ov --section-delimiter '^[^\s]' --section-header"
+export BAT_PAGER="ov -F -H3"
 
 eval "$(zoxide init zsh)"
 

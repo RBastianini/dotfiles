@@ -3,13 +3,19 @@
 	name = Riccardo Bastianini
 [core]
 	editor = vim
-	pager = delta
+	pager = delta --pager='ov -F --header 3'
+	diff = delta --features ov-diff
+	log  = delta --features ov-log
 [interactive]
 	diffFilter = delta --color-only --features=interactive
 [delta]
 	navigate = true
 	features = decorations
+[delta "ov-diff"]
+    pager=ov -F --section-delimiter '^(commit|added:|removed:|renamed:|Δ)' --section-header --pattern '•'
 
+[delta "ov-log"]
+    pager=ov -F --section-delimiter '^commit' --section-header-num 3
 [merge]
 	conflictsyle = diff3
 [diff]

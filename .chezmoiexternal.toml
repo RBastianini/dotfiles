@@ -42,6 +42,13 @@
     executable = true
     url = "https://github.com/dandavison/delta/releases/download/{{ $delta_version }}/delta-{{ $delta_version }}-x86_64-unknown-linux-gnu.tar.gz"
 
+[".bin/ov"]
+    {{ $ov_version := (gitHubLatestRelease "noborus/ov").TagName }}
+    type = "archive-file"
+    path = "ov"
+    executable = true
+    url = "https://github.com/noborus/ov/releases/download/{{ $ov_version }}/ov_{{ $ov_version | trimPrefix "v" }}_linux_amd64.zip"
+
 [".bin/bat"]
     {{ $bat_version := (gitHubLatestRelease "sharkdp/bat").TagName }}
     type = "archive-file"
