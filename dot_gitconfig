@@ -9,13 +9,23 @@
 [interactive]
 	diffFilter = delta --color-only --features=interactive
 [delta]
+	hyperlinks = true
 	navigate = true
 	features = decorations
 [delta "ov-diff"]
-    pager=ov -F --section-delimiter '^(commit|added:|removed:|renamed:|Δ)' --section-header --pattern '•'
+	pager=ov -F --section-delimiter '^(commit|added:|removed:|renamed:|Δ)' --section-header --pattern '•'
 
 [delta "ov-log"]
-    pager=ov -F --section-delimiter '^commit' --section-header-num 3
+	pager=ov -F --section-delimiter '^commit' --section-header-num 3
+[pager]
+	# overload delta pager for some commands
+	show = delta --pager='ov -F --header 3'
+
+	# We are now overloading some commands via "delta features"
+	# This allows us to use different pager per git command
+	# It allows to maintain a simpler config file and avoid escaping quotes
+	diff = delta --features ov-diff
+	log  = delta --features ov-log
 [merge]
 	conflictsyle = diff3
 [diff]

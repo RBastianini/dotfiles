@@ -88,11 +88,25 @@
     executable = true
     url = "https://github.com/arp242/uni/releases/download/{{ $uni_version }}/uni-{{ $uni_version }}-linux-amd64.gz"
 
+[".bin/uuinfo"]
+    {{ $uuinfo_version := (gitHubLatestRelease "Racum/uuinfo").TagName }}
+    type = "archive-file"
+    path = "uuinfo"
+    executable = true
+    url = "https://github.com/Racum/uuinfo/releases/download/{{ $uuinfo_version }}/uuinfo-linux-x86_64.tar.gz"
+
 [".bin/yq"]
     {{ $yq_version := (gitHubLatestRelease "mikefarah/yq").TagName }}
     type = "file"
     executable = true
     url = "https://github.com/mikefarah/yq/releases/download/{{ $yq_version }}/yq_linux_amd64"
+
+[".bin/xq"]
+    {{ $xq_version := (gitHubLatestRelease "sibprogrammer/xq").TagName }}
+    type = "archive-file"
+    path = "xq"
+    executable = true
+    url = "https://github.com/sibprogrammer/xq/releases/download/{{ $xq_version }}/xq_{{ $xq_version | trimPrefix "v" }}_linux_amd64.tar.gz"
 
 # TODO: this ends up putting the file in the directory where chezmoi is launched from instead than in .bin.
 #[".bin/jnv"]
